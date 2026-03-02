@@ -1,0 +1,17 @@
+{
+  "active_plan": "/Users/jayden/Desktop/done자동화/cardnewscontent/.sisyphus/plans/card-news-web-ui-implementation.md",
+  "started_at": "2026-03-02T04:37:09.566Z",
+  "session_ids": ["ses_3533142c4ffewqrmvmmA3fMRt3"],
+  "plan_name": "card-news-web-ui",
+  "tasks": [
+    {"id": "T1", "name": "Project Setup", "status": "pending", "wave": 1},
+    {"id": "T2", "name": "Set Manager", "status": "pending", "wave": 1},
+    {"id": "T3", "name": "File Upload API", "status": "pending", "wave": 2},
+    {"id": "T4", "name": "Claude API Client", "status": "pending", "wave": 2},
+    {"id": "T5", "name": "HTML Builder", "status": "pending", "wave": 3},
+    {"id": "T6", "name": "PNG Capture + Download", "status": "pending", "wave": 4},
+    {"id": "T7", "name": "Frontend SPA", "status": "pending", "wave": 5},
+    {"id": "T8", "name": "Error Handling + UX Polish", "status": "pending", "wave": 6}
+  ],
+  "current_wave": 1
+}

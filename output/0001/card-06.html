@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Card News - 6페이지 (마무리)</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --card-width: 1080px;
+            --card-height: 1350px;
+            --card-bg-black: #000000;
+        }
+
+        body {
+            background-color: #2c2c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .card-container {
+            width: var(--card-width);
+            height: var(--card-height);
+            background-color: var(--card-bg-black);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            color: #ffffff;
+            /* transform: scale(0.6); transform-origin: top center; margin-bottom: -540px; */
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            background-image: url('file:///Users/jayden/Desktop/done자동화/cardnewscontent/input/0001/KakaoTalk_Image_2026-02-28-12-45-30_015.jpeg');
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.75);
+        }
+
+        .content {
+            position: absolute;
+            z-index: 3;
+            width: 100%;
+            box-sizing: border-box;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 156px;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: -4px;
+        }
+
+        p {
+            font-size: 26px;
+            font-weight: 400;
+            margin: 10px 0 0 0;
+            letter-spacing: 16px;
+            margin-right: -16px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="bg-image"></div>
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1>D.ONE</h1>
+            <p>DO YOUR ONE GOAL</p>
+        </div>
+    </div>
+</body>
+</html>

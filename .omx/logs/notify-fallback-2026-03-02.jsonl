@@ -1,0 +1,3 @@
+{"timestamp":"2026-03-02T04:35:24.222Z","type":"watcher_start","cwd":"/Users/jayden/Desktop/done자동화/cardnewscontent","notify_script":"/Users/jayden/.npm-global/lib/node_modules/oh-my-codex/scripts/notify-hook.js","poll_ms":700,"once":false}
+{"timestamp":"2026-03-02T05:45:00.119Z","type":"watcher_stop","signal":"SIGTERM"}
+{"timestamp":"2026-03-02T05:45:00.147Z","type":"watcher_start","cwd":"/Users/jayden/Desktop/done자동화/cardnewscontent","notify_script":"/Users/jayden/.npm-global/lib/node_modules/oh-my-codex/scripts/notify-hook.js","poll_ms":700,"once":false}

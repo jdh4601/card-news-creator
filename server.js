@@ -7,14 +7,15 @@ import { fileURLToPath } from 'url';
 import archiver from 'archiver';
 import { nextSetId, createSetDir, readSession, writeSession, BASE, validateSetId } from './lib/set-manager.js';
 import { generateContent } from './lib/claude-client.js';
+import { generateLocalContent } from './lib/local-generator.js';
 import { buildHtml } from './lib/html-builder.js';
 import { captureSet } from './lib/capture.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const HAS_ANTHROPIC = Boolean(process.env.ANTHROPIC_API_KEY);
-if (!HAS_ANTHROPIC) {
-  console.warn('⚠️  ANTHROPIC_API_KEY is not set. /api/sets/:id/generate will be unavailable.');
+const HAS_KIMI = Boolean(process.env.KIMI_API_KEY);
+if (!HAS_KIMI) {
+  console.warn('⚠️  KIMI_API_KEY is not set. Falling back to local generation.');
 }
 
 const app = express();
@@ -138,9 +139,6 @@ app.post('/api/sets/:id/generate', async (req, res) => {
   try {
     const { id } = req.params;
     try { validateSetId(id); } catch (e) { return res.status(400).json({ error: '잘못된 세트 ID 입니다' }); }
-    if (!HAS_ANTHROPIC) {
-      return res.status(503).json({ error: 'AI 키가 설정되지 않아 컨텐츠 생성을 사용할 수 없습니다' });
-    }
     const textPath = path.join(BASE, 'input', id, 'text.md');
     
     let text;
@@ -150,12 +148,99 @@ app.post('/api/sets/:id/generate', async (req, res) => {
       return res.status(400).json({ error: '텍스트 파일을 찾을 수 없습니다. 먼저 업로드해주세요.' });
     }
     
+    if (!HAS_KIMI) {
+      // No API key: use local fallback so the flow can proceed in dev/offline
+      try {
+        const fallback = generateLocalContent(text || '');
+        const session = await readSession(id);
+        session.status = 'generated';
+        session.content = fallback;
+        session.generatedAt = new Date().toISOString();
+        session.generationSource = 'local-fallback';
+        await writeSession(id, session);
+        return res.json(fallback);
+      } catch (fallbackErr) {
+        console.error('Local fallback failed without API key:', fallbackErr);
+        return res.status(503).json({ error: 'AI 키가 없고 로컬 대체 생성도 실패했습니다.' });
+      }
+    }
+    
     if (text.length > 5000) {
       console.warn(`Text too long (${text.length} chars), truncating to 5000`);
       text = text.substring(0, 5000);
     }
     
-    const content = await generateContent(text);
+    let content;
+    try {
+      content = await generateContent(text);
+    } catch (err) {
+      // Provide clearer client-visible errors and accurate status codes
+      console.error('Generate error details:', err);
+      if (err && err.code === 'VALIDATION_FAILED') {
+        return res.status(422).json({
+          error: 'AI 응답 형식이 예상과 다릅니다. 다시 시도해주세요.',
+          details: err.details || undefined
+        });
+      }
+      if (err && err.code === 'PARSE_FAILED') {
+        // Try a safe local fallback on parse failures
+        try {
+          const fallback = generateLocalContent(text);
+          const session = await readSession(id);
+          session.status = 'generated';
+          session.content = fallback;
+          session.generatedAt = new Date().toISOString();
+          session.generationSource = 'local-fallback';
+          await writeSession(id, session);
+          return res.json(fallback);
+        } catch (fallbackErr) {
+          console.error('Local fallback failed:', fallbackErr);
+          return res.status(422).json({ error: 'AI 응답 파싱 실패. 로컬 대체 생성도 실패했습니다.' });
+        }
+      }
+      if (err && typeof err.status === 'number') {
+        if (err.status === 401) {
+          return res.status(401).json({ error: 'AI API 키가 유효하지 않습니다. 키를 확인해주세요.' });
+        }
+        if (err.status === 429) {
+          return res.status(429).json({ error: 'AI 서비스 사용량 제한을 초과했습니다. 잠시 후 다시 시도해주세요.' });
+        }
+        if (err.status >= 500) {
+          // On upstream errors, attempt a local fallback to avoid blocking the flow
+          try {
+            const fallback = generateLocalContent(text);
+            const session = await readSession(id);
+            session.status = 'generated';
+            session.content = fallback;
+            session.generatedAt = new Date().toISOString();
+            session.generationSource = 'local-fallback';
+            await writeSession(id, session);
+            return res.json(fallback);
+          } catch (fallbackErr) {
+            console.error('Local fallback failed:', fallbackErr);
+            return res.status(502).json({ error: 'AI 서비스 오류입니다. 잠시 후 다시 시도해주세요.' });
+          }
+        }
+        return res.status(500).json({ error: '컨텐츠 생성 중 오류가 발생했습니다. 다시 시도해주세요.' });
+      }
+      if (err && typeof err.message === 'string' && err.message.includes('Failed to read prompt template')) {
+        return res.status(500).json({ error: '프롬프트 템플릿을 읽는 중 오류가 발생했습니다.' });
+      }
+      // Unknown error: still try local fallback for a smooth UX
+      try {
+        const fallback = generateLocalContent(text);
+        const session = await readSession(id);
+        session.status = 'generated';
+        session.content = fallback;
+        session.generatedAt = new Date().toISOString();
+        session.generationSource = 'local-fallback';
+        await writeSession(id, session);
+        return res.json(fallback);
+      } catch (fallbackErr) {
+        console.error('Local fallback failed:', fallbackErr);
+        return res.status(500).json({ error: '컨텐츠 생성 중 오류가 발생했습니다. 다시 시도해주세요.' });
+      }
+    }
     
     const session = await readSession(id);
     session.status = 'generated';

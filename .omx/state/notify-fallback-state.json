@@ -1,0 +1,9 @@
+{
+  "pid": 53075,
+  "started_at": "2026-03-02T05:45:00.146Z",
+  "cwd": "/Users/jayden/Desktop/done자동화/cardnewscontent",
+  "notify_script": "/Users/jayden/.npm-global/lib/node_modules/oh-my-codex/scripts/notify-hook.js",
+  "poll_ms": 700,
+  "tracked_files": 0,
+  "seen_turns": 0
+}

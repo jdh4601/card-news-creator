@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Card News - 1페이지 (표지)</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --card-width: 1080px;
+            --card-height: 1350px;
+            --card-bg-black: #000000;
+        }
+
+        body {
+            background-color: #2c2c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .card-container {
+            width: var(--card-width);
+            height: var(--card-height);
+            background-color: var(--card-bg-black);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            color: #ffffff;
+            /* transform: scale(0.6); transform-origin: top center; margin-bottom: -540px; */
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            background-image: url('file:///Users/jayden/Desktop/done자동화/cardnewscontent/input/0001/IMG_5709.jpeg');
+            background-position: top center;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0) 50%,
+                rgba(0,0,0,0.8) 65%,
+                #000000 75%,
+                #000000 100%
+            );
+        }
+
+        .content {
+            position: absolute;
+            z-index: 3;
+            width: 100%;
+            box-sizing: border-box;
+            left: 0;
+            bottom: 90px;
+            padding-left: 90px;
+        }
+
+        h1 {
+            font-size: 82px;
+            font-weight: 700;
+            line-height: 1.35;
+            margin: 0;
+            letter-spacing: -2px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="bg-image"></div>
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1>250명의 거절 끝에<br>두렵지 않게 된<br>단 하나의 이유</h1>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{"timestamp":"2026-03-02T04:35:24.197Z","type":"hook_dispatch","event":"session-start","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T04:37:12.866Z","type":"hook_dispatch","event":"turn-complete","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T04:37:12.872Z","type":"hook_dispatch","event":"session-idle","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:30:03.520Z","type":"hook_dispatch","event":"turn-complete","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:30:03.528Z","type":"hook_dispatch","event":"session-idle","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:42:35.701Z","type":"hook_dispatch","event":"turn-complete","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:42:35.707Z","type":"hook_dispatch","event":"session-idle","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:44:49.689Z","type":"hook_dispatch","event":"turn-complete","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:44:49.695Z","type":"hook_dispatch","event":"session-idle","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T05:45:00.124Z","type":"hook_dispatch","event":"session-start","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T06:01:01.590Z","type":"hook_dispatch","event":"turn-complete","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T06:01:01.595Z","type":"hook_dispatch","event":"session-idle","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T06:03:22.063Z","type":"hook_dispatch","event":"turn-complete","source":"native","enabled":false,"reason":"plugins_disabled"}
+{"timestamp":"2026-03-02T06:03:22.068Z","type":"hook_dispatch","event":"session-idle","source":"native","enabled":false,"reason":"plugins_disabled"}
