@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카드뉴스 생성기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <section id="screen-upload" class="screen active">
+      <h1>카드뉴스 생성기</h1>
+      <div id="photo-grid">
+        <div class="photo-slot" data-index="0">
+          <span class="slot-number">1</span>
+          <input type="file" accept="image/jpeg,image/png" class="photo-input">
+          <div class="photo-preview"></div>
+        </div>
+        <div class="photo-slot" data-index="1">
+          <span class="slot-number">2</span>
+          <input type="file" accept="image/jpeg,image/png" class="photo-input">
+          <div class="photo-preview"></div>
+        </div>
+        <div class="photo-slot" data-index="2">
+          <span class="slot-number">3</span>
+          <input type="file" accept="image/jpeg,image/png" class="photo-input">
+          <div class="photo-preview"></div>
+        </div>
+        <div class="photo-slot" data-index="3">
+          <span class="slot-number">4</span>
+          <input type="file" accept="image/jpeg,image/png" class="photo-input">
+          <div class="photo-preview"></div>
+        </div>
+        <div class="photo-slot" data-index="4">
+          <span class="slot-number">5</span>
+          <input type="file" accept="image/jpeg,image/png" class="photo-input">
+          <div class="photo-preview"></div>
+        </div>
+        <div class="photo-slot" data-index="5">
+          <span class="slot-number">6</span>
+          <input type="file" accept="image/jpeg,image/png" class="photo-input">
+          <div class="photo-preview"></div>
+        </div>
+      </div>
+      <textarea id="text-input" placeholder="원문 텍스트를 붙여넣으세요..."></textarea>
+      <button id="btn-generate" disabled>컨텐츠 생성 시작</button>
+    </section>
+
+    <section id="screen-titles" class="screen">
+      <h2>1페이지 제목 선택</h2>
+      <div id="titles-list"></div>
+      <button id="btn-back-upload">뒤로</button>
+    </section>
+
+    <section id="screen-page" class="screen">
+      <h2 id="page-label">2페이지 검토</h2>
+      <div id="page-content"></div>
+      <div class="actions">
+        <button id="btn-regenerate">다시 생성</button>
+        <button id="btn-approve">다음</button>
+      </div>
+    </section>
+
+    <section id="screen-progress" class="screen">
+      <h2>생성 중...</h2>
+      <div id="progress-log"></div>
+      <div class="spinner"></div>
+    </section>
+
+    <section id="screen-done" class="screen">
+      <h2>완성!</h2>
+      <div id="preview-grid"></div>
+      <button id="btn-download">PNG 다운로드 (ZIP)</button>
+      <button id="btn-new">새 카드뉴스</button>
+    </section>
+
+    <div id="toast" class="toast"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

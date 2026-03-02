@@ -1,0 +1,24 @@
+{
+  "name": "cardnewscontent",
+  "version": "1.0.0",
+  "description": "Card news web UI - AI-powered Instagram card news generator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["card-news", "instagram", "ai", "claude"],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "archiver": "^7.0.1",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "multer": "^2.1.0",
+    "playwright": "^1.58.2",
+    "zod": "^4.3.6"
+  }
+}
